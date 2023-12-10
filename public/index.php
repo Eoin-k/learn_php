@@ -9,3 +9,18 @@ define('FILES_PATH', $root . 'transaction_files' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', $root . 'views' . DIRECTORY_SEPARATOR);
 
 /* YOUR CODE (Instructions in README.md) */
+require APP_PATH . "App.php";
+$files = getTransactionFiles(FILES_PATH);
+$transactions = [];
+foreach($files as $file){
+    $transactions = array_merge($transactions, gettransactions($file));
+ extractTransactions($transactions);
+$totals = calculateTotals($transactions);
+}
+
+require APP_PATH . "helpers.php";
+require VIEWS_PATH . 'transactions.php';
+
+
+
+
